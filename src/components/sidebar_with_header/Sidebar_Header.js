@@ -156,24 +156,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </NavLink>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
-      {menuItems?.map((link) =>
-        link.name !== 'FERRETERIA' ? (
-          <NavLink
-            to={`products/${link.path}`}
-            key={link.name}
-            onClick={onClose}>
-            <NavItem
-              icon={link.icon}
-              fontSize={{ base: 'md', md: 'xs' }}
-              /* padding={'3'} */
-              marginX={'0'}
-              color="gray.500">
-              {link.name}
-            </NavItem>
-          </NavLink>
-        ) : (
+      {menuItems?.map((link) => (
+        <NavLink to={`products/${link.path}`} key={link.name} onClick={onClose}>
           <NavItem
-            key={link.name}
             icon={link.icon}
             fontSize={{ base: 'md', md: 'xs' }}
             /* padding={'3'} */
@@ -181,8 +166,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
             color="gray.500">
             {link.name}
           </NavItem>
-        )
-      )}
+        </NavLink>
+      ))}
     </Box>
   );
 };
