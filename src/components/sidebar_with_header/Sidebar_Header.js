@@ -125,6 +125,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
     TfiLayoutGrid2,
     TfiLayoutGrid3Alt,
     TfiLayoutGrid2,
+    TfiLayoutGrid3Alt,
   ];
   useEffect(() => {
     getMenuNamesData().then((data) => {
