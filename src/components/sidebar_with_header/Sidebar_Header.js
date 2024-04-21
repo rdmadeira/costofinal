@@ -80,6 +80,38 @@ export default function SidebarWithHeader() {
             <SidebarContent onClose={onClose} />
           </DrawerContent>
         </Drawer>
+        {user?.uid === 'UxvS5mtoEwYVUVIL2btZgVIOZsn1' && (
+          <>
+            <Box position="absolute" bottom="30px" right="20px">
+              <Button
+                colorScheme={'red'}
+                opacity="0.7"
+                onClick={() => {
+                  fetch(
+                    'http://127.0.0.1:5001/costofinal-b391b/us-central1/products/api/products/create-products',
+                    {
+                      method: 'GET',
+                      headers: {
+                        Authorization: 'Bearer ' + user.uid,
+                      },
+                    }
+                  )
+                    .then((res) => {
+                      console.log('res', res.redirected);
+                      location.href = res.url;
+                    })
+                    .then((data) => console.log('data', data));
+                }}>
+                Update-products
+              </Button>
+            </Box>
+            <Box position="absolute" bottom="90px" right="40px">
+              <Button colorScheme={'red'} opacity="0.7">
+                Update-prices
+              </Button>
+            </Box>
+          </>
+        )}
 
         <Modal isOpen={signoutIsOpen}>
           <ModalOverlay />
