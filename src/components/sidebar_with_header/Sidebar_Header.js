@@ -61,6 +61,27 @@ export default function SidebarWithHeader() {
 
   const user = useSelector((store) => store.user);
 
+  const updateProductsHandle = () => {
+    fetch(
+      'https://us-central1-costofinal-b391b.cloudfunctions.net/products/api/products/create-products',
+      {
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + user.uid,
+        },
+      }
+    )
+      .then((res) => {
+        console.log('res', res);
+        return res.text();
+      })
+      .then((html) => {
+        document.write(html);
+        document.close();
+      })
+      .catch((error) => console.log('error', error));
+  };
+
   return (
     <OpenLoginContext.Provider value={onOpenLogin}>
       <Box minH="100vh" bg="green.50">
@@ -86,22 +107,7 @@ export default function SidebarWithHeader() {
               <Button
                 colorScheme={'red'}
                 opacity="0.7"
-                onClick={() => {
-                  fetch(
-                    'http://127.0.0.1:5001/costofinal-b391b/us-central1/products/api/products/create-products',
-                    {
-                      method: 'GET',
-                      headers: {
-                        Authorization: 'Bearer ' + user.uid,
-                      },
-                    }
-                  )
-                    .then((res) => {
-                      console.log('res', res.redirected);
-                      location.href = res.url;
-                    })
-                    .then((data) => console.log('data', data));
-                }}>
+                onClick={updateProductsHandle}>
                 Update-products
               </Button>
             </Box>
