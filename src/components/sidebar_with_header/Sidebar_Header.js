@@ -87,7 +87,7 @@ export default function SidebarWithHeader() {
 
   const updatePricesFetch = () => {
     fetch(
-      'https://us-central1-costofinal-b391b.cloudfunctions.net/products/api/products/update-prices',
+      'https://us-central1-costofinal-b391b.cloudfunctions.net/products/api/products/update-price',
       {
         method: 'GET',
         headers: {
