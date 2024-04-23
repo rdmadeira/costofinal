@@ -61,7 +61,7 @@ export default function SidebarWithHeader() {
 
   const user = useSelector((store) => store.user);
 
-  const updateProductsHandle = () => {
+  const updateProductsFetch = () => {
     fetch(
       'https://us-central1-costofinal-b391b.cloudfunctions.net/products/api/products/create-products',
       {
@@ -79,7 +79,34 @@ export default function SidebarWithHeader() {
         document.write(html);
         document.close();
       })
-      .catch((error) => console.log('error', error));
+      .catch((error) => {
+        console.log('error', error);
+        throw error;
+      });
+  };
+
+  const updatePricesFetch = () => {
+    fetch(
+      'https://us-central1-costofinal-b391b.cloudfunctions.net/products/api/products/update-prices',
+      {
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + user.uid,
+        },
+      }
+    )
+      .then((res) => {
+        console.log('res', res);
+        return res.text();
+      })
+      .then((html) => {
+        document.write(html);
+        document.close();
+      })
+      .catch((error) => {
+        console.log('error', error);
+        throw error;
+      });
   };
 
   return (
@@ -107,12 +134,15 @@ export default function SidebarWithHeader() {
               <Button
                 colorScheme={'red'}
                 opacity="0.7"
-                onClick={updateProductsHandle}>
+                onClick={updateProductsFetch}>
                 Update-products
               </Button>
             </Box>
             <Box position="absolute" bottom="90px" right="40px">
-              <Button colorScheme={'red'} opacity="0.7">
+              <Button
+                colorScheme={'red'}
+                opacity="0.7"
+                onClick={updatePricesFetch}>
                 Update-prices
               </Button>
             </Box>
