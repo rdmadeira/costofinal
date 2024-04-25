@@ -61,6 +61,54 @@ export default function SidebarWithHeader() {
 
   const user = useSelector((store) => store.user);
 
+  const updateProductsFetch = () => {
+    fetch(
+      'https://us-central1-costofinal-b391b.cloudfunctions.net/products/api/products/create-products',
+      {
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + user.uid,
+        },
+      }
+    )
+      .then((res) => {
+        console.log('res', res);
+        return res.text();
+      })
+      .then((html) => {
+        document.write(html);
+        document.close();
+      })
+      .catch((error) => {
+        console.log('error', error);
+        throw error;
+      });
+  };
+
+  const updatePricesFetch = () => {
+    fetch(
+      'https://us-central1-costofinal-b391b.cloudfunctions.net/products/api/products/update-price',
+      {
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + user.uid,
+        },
+      }
+    )
+      .then((res) => {
+        console.log('res', res);
+        return res.text();
+      })
+      .then((html) => {
+        document.write(html);
+        document.close();
+      })
+      .catch((error) => {
+        console.log('error', error);
+        throw error;
+      });
+  };
+
   return (
     <OpenLoginContext.Provider value={onOpenLogin}>
       <Box minH="100vh" bg="green.50">
@@ -80,6 +128,26 @@ export default function SidebarWithHeader() {
             <SidebarContent onClose={onClose} />
           </DrawerContent>
         </Drawer>
+        {user?.uid === 'UxvS5mtoEwYVUVIL2btZgVIOZsn1' && (
+          <>
+            <Box position="absolute" bottom="30px" right="20px">
+              <Button
+                colorScheme={'red'}
+                opacity="0.7"
+                onClick={updateProductsFetch}>
+                Update-products
+              </Button>
+            </Box>
+            <Box position="absolute" bottom="90px" right="40px">
+              <Button
+                colorScheme={'red'}
+                opacity="0.7"
+                onClick={updatePricesFetch}>
+                Update-prices
+              </Button>
+            </Box>
+          </>
+        )}
 
         <Modal isOpen={signoutIsOpen}>
           <ModalOverlay />
@@ -125,6 +193,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
     TfiLayoutGrid2,
     TfiLayoutGrid3Alt,
     TfiLayoutGrid2,
+    TfiLayoutGrid3Alt,
   ];
   useEffect(() => {
     getMenuNamesData().then((data) => {

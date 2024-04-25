@@ -42,6 +42,7 @@ const Account = () => {
       calle: user.dirección.calle,
       localidad: user.dirección.localidad,
       CP: user.dirección.CP,
+      complemento: user.dirección.complemento || '',
     },
   });
 
@@ -53,6 +54,7 @@ const Account = () => {
       phone: data.telefono,
       dirección: {
         localidad: data.localidad,
+        complemento: data.complemento,
         calle: data.calle,
         numero: data.numero,
         CP: data.CP,
@@ -79,7 +81,7 @@ const Account = () => {
         Mis datos
       </Heading>
       <form
-        onSubmit={handleSubmit(onSubmitHandle)}
+        onSubmit={handleSubmit(onSubmitHandle, (error) => console.log(error))}
         style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
         <Wrap
           direction="row"
@@ -115,19 +117,16 @@ const Account = () => {
                       render={({
                         field: {
                           onChange,
-
                           value = user[inputKey] ||
                             user['dirección'][inputKey] ||
                             user['phone'],
-                          name = inputKey,
                         },
                       }) => (
                         <>
                           <Input
                             {...register(inputKey)}
-                            ref={useRefs.current && useRefs.current[index]}
-                            name={name}
-                            id={name}
+                            ref={useRefs.current && useRefs.current[index]} // El ref da error se pongo antes del register
+                            id={inputKey}
                             type={
                               inputKey === 'contraseña' ||
                               inputKey === 'confirme la contraseña'
@@ -136,8 +135,9 @@ const Account = () => {
                                 ? 'tel'
                                 : 'text'
                             }
-                            onChange={onChange}
+                            onChange={onChange} // OnChange y onBlur de register. Tiene que estar después del register.
                             onBlur={() => {
+                              // Custom onBlur
                               useRefs.current[index] &&
                                 useRefs.current[index].current.toggleAttribute(
                                   'disabled'
