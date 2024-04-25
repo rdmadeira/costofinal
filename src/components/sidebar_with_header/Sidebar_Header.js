@@ -60,8 +60,10 @@ export default function SidebarWithHeader() {
   } = useDisclosure();
 
   const user = useSelector((store) => store.user);
+  const [isFetching, setIsFetching] = useState(false);
 
   const updateProductsFetch = () => {
+    setIsFetching(true);
     fetch(
       'https://us-central1-costofinal-b391b.cloudfunctions.net/products/api/products/create-products',
       {
@@ -73,10 +75,13 @@ export default function SidebarWithHeader() {
     )
       .then((res) => {
         console.log('res', res);
+
         return res.text();
       })
       .then((html) => {
         document.write(html);
+        setIsFetching(false);
+
         document.close();
       })
       .catch((error) => {
@@ -86,6 +91,8 @@ export default function SidebarWithHeader() {
   };
 
   const updatePricesFetch = () => {
+    setIsFetching(true);
+
     fetch(
       'https://us-central1-costofinal-b391b.cloudfunctions.net/products/api/products/update-price',
       {
@@ -101,6 +108,8 @@ export default function SidebarWithHeader() {
       })
       .then((html) => {
         document.write(html);
+        setIsFetching(false);
+
         document.close();
       })
       .catch((error) => {
@@ -134,7 +143,9 @@ export default function SidebarWithHeader() {
               <Button
                 colorScheme={'red'}
                 opacity="0.7"
-                onClick={updateProductsFetch}>
+                onClick={updateProductsFetch}
+                rightIcon={isFetching ? <Spinner /> : null}>
+                {' '}
                 Update-products
               </Button>
             </Box>
@@ -142,7 +153,8 @@ export default function SidebarWithHeader() {
               <Button
                 colorScheme={'red'}
                 opacity="0.7"
-                onClick={updatePricesFetch}>
+                onClick={updatePricesFetch}
+                rightIcon={isFetching ? <Spinner /> : null}>
                 Update-prices
               </Button>
             </Box>
