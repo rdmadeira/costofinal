@@ -1,23 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+} from '@chakra-ui/react';
+
 import {
   VStack,
   Box,
+  /* 
   Accordion,
   AccordionButton,
   AccordionPanel,
   AccordionItem,
-  AccordionIcon,
+  AccordionIcon, */
   Heading,
   Divider,
+  Flex,
+  Card,
+  CardHeader,
+  Image,
+  CardBody,
 } from '@chakra-ui/react';
 import useGetProducts from '../hooks/useGetProducts';
 import { useParams } from 'react-router-dom';
 import ProductGrid from '../components/product_grid/ProductGrid';
 
 const Products = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const { products } = useGetProducts();
   let { product: productType } = useParams();
   productType = productType.toUpperCase().replace(/-/g, ' ');
+
+  const [productState, setProductState] = useState();
+
+  const onOpenModalHandle = (product) => {
+    setProductState(product);
+    onOpen();
+  };
 
   return (
     <VStack
@@ -33,8 +59,61 @@ const Products = () => {
         {products && productType}
       </Heading>
       <Divider />
-
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        scrollBehavior="outside"
+        size={'3xl'}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{productState?.toUpperCase()}</ModalHeader>
+          <ModalBody>
+            <VStack>
+              <ProductGrid
+                product={products && products[productType][productState]}
+                productType={productType}
+              />
+            </VStack>
+          </ModalBody>
+          <ModalFooter>
+            <ModalCloseButton />
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <Box width="100%">
+        <Flex gap={'4'} wrap="wrap" justifyContent={'center'}>
+          {products &&
+            Object.keys(products[productType]).map((product) => {
+              return (
+                <>
+                  <Card
+                    _hover={{
+                      cursor: 'pointer',
+                      transform: 'scale(1.06)',
+                      transition: '0.2s ease-out',
+                    }}
+                    width={'30%'}
+                    maxWidth={'2xs'}
+                    key={products[productType][product][0].id}
+                    onClick={() => onOpenModalHandle(product)}>
+                    <CardHeader>
+                      <Image
+                        width={'50%'}
+                        src={
+                          process.env.PUBLIC_URL +
+                          '/assets/cards/bronce_trafilado_buje_reduccion.jpg'
+                        }
+                      />
+                    </CardHeader>
+                    <CardBody>{product.toUpperCase()}</CardBody>
+                  </Card>
+                </>
+              );
+            })}
+        </Flex>
+      </Box>
+
+      {/* 
         <Accordion allowToggle>
           {products &&
             Object.keys(products[productType]).map((product) => {
@@ -57,7 +136,7 @@ const Products = () => {
               );
             })}
         </Accordion>
-      </Box>
+      </Box> */}
     </VStack>
   );
 };

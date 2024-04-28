@@ -74,8 +74,6 @@ export default function SidebarWithHeader() {
       }
     )
       .then((res) => {
-        console.log('res', res);
-
         return res.text();
       })
       .then((html) => {
@@ -103,7 +101,6 @@ export default function SidebarWithHeader() {
       }
     )
       .then((res) => {
-        console.log('res', res);
         return res.text();
       })
       .then((html) => {

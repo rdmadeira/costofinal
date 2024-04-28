@@ -26,7 +26,7 @@ const ProductGrid = ({ product }) => {
           </Tr>
         </Thead>
         <Tbody>
-          {product.map((subProd) => {
+          {product?.map((subProd) => {
             return (
               <ProductLine
                 subProd={subProd}

@@ -39,7 +39,6 @@ const UpdatePrice = () => {
     );
     const responseData = await response.json();
     alert(responseData.data.message || responseData.error.message);
-    console.log(responseData);
   };
 
   return user && user.uid === process.env.REACT_APP_UID ? (
