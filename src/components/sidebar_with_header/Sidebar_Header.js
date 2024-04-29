@@ -335,7 +335,6 @@ const MobileNav = ({
           <NavLink to="/cart">
             <CustomIconButton
               cartNum={cart && cart.length}
-              size="lg"
               variant="ghost"
               aria-label="open menu"
               icon={<BsCart4 />}
@@ -391,11 +390,7 @@ const MobileNav = ({
                   <MenuItem onClick={() => navigateHandle('/orders')}>
                     Mis Ordenes
                   </MenuItem>
-                  {user && user.uid === 'UxvS5mtoEwYVUVIL2btZgVIOZsn1' && (
-                    <MenuItem onClick={() => navigateHandle('/update')}>
-                      Update Prices
-                    </MenuItem>
-                  )}
+
                   <MenuDivider />
                   <MenuItem onClick={signOutHandle}>Cerrar sesión</MenuItem>
                 </MenuList>
