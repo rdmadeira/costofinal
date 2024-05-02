@@ -129,7 +129,7 @@ const Products = () => {
                       justifyContent={'center'}
                       padding={'1rem'}>
                       <Image
-                        width={'50%'}
+                        width={'76%'}
                         src={
                           process.env.PUBLIC_URL +
                           '/assets/cards/' +
@@ -137,8 +137,8 @@ const Products = () => {
                         }
                       />
                     </CardHeader>
-                    <CardBody>
-                      <Text fontSize={'max(1.5vw, 0.6rem)'}>
+                    <CardBody display={'flex'} alignItems="end">
+                      <Text fontSize={'max(1.0vw, 0.6rem)'}>
                         {product.toUpperCase()}
                       </Text>
                     </CardBody>
