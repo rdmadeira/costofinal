@@ -115,6 +115,36 @@ export default function SidebarWithHeader() {
       });
   };
 
+  const getXLSXFetch = () => {
+    setIsFetching(true);
+    /* window.open(
+      'http://127.0.0.1:5001/costofinal-b391b/us-central1/products/api/products/products-to-excel'
+    ); */
+    fetch(
+      'https://us-central1-costofinal-b391b.cloudfunctions.net/products/api/products/products-to-excel',
+      {
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + user.uid,
+          'Content-Type':
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        },
+      }
+    )
+      .then((res) => {
+        return res.blob();
+      })
+      .then((blob) => {
+        setIsFetching(false);
+        const file = window.URL.createObjectURL(blob);
+        window.location.assign(file);
+      })
+      .catch((error) => {
+        console.log('error', error);
+        throw error;
+      });
+  };
+
   return (
     <OpenLoginContext.Provider value={onOpenLogin}>
       <Box minH="100vh" bg="green.50">
@@ -153,6 +183,15 @@ export default function SidebarWithHeader() {
                 onClick={updatePricesFetch}
                 rightIcon={isFetching ? <Spinner /> : null}>
                 Update-prices
+              </Button>
+            </Box>
+            <Box position="absolute" bottom="150px" right="40px">
+              <Button
+                colorScheme={'red'}
+                opacity="0.7"
+                onClick={getXLSXFetch}
+                rightIcon={isFetching ? <Spinner /> : null}>
+                Import Products
               </Button>
             </Box>
           </>
