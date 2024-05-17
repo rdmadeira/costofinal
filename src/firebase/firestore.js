@@ -69,7 +69,11 @@ export const getProductsArrayToMenu = async () => {
   });
 
   products.sort(function (a, b) {
-    if (a != 'FERRETERIA' && b == 'FERRETERIA') {
+    if (
+      a != 'FERRETERIA' ||
+      (a != 'ADHESIVOS' && b == 'FERRETERIA') ||
+      b == 'ADHESIVOS'
+    ) {
       return -1;
     } else {
       return 0;

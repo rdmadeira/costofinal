@@ -242,10 +242,13 @@ const SidebarContent = ({ onClose, ...rest }) => {
     TfiLayoutGrid3Alt,
     TfiLayoutGrid2,
     TfiLayoutGrid3Alt,
+    TfiLayoutGrid2,
   ];
   useEffect(() => {
     getMenuNamesData().then((data) => {
-      icons.forEach((icon, index) => (data[index].icon = icons[index]));
+      icons.forEach(
+        (icon, index) => data[index] && (data[index].icon = icons[index])
+      );
       setmenuItems(data);
     });
   }, [setmenuItems]);
@@ -258,7 +261,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
       borderRight="1px"
       borderRightColor={useColorModeValue('green.100', 'gray.700')}
       w={{ base: 'full', md: 52 }}
-      pos="fixed"
+      pos="absolute"
+      overflowY={'overlay'}
+      style={{ scrollbarWidth: 'none' }}
+      paddingBottom="50px"
       h="full"
       {...rest}>
       <Flex
