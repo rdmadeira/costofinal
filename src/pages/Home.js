@@ -10,7 +10,7 @@ import {
   CardFooter, */
 } from '@chakra-ui/react';
 import CustomCarousel from '../components/carousel/Carousel';
-import NewsCarousel from '../components/carousel/NewsCarousel';
+/* import NewsCarousel from '../components/carousel/NewsCarousel'; */
 import { sendItemsToCarrousel } from '../utils/data_utils/dataUtils';
 import itemsToCarrousel from '../data/itemsToCarrousel.json';
 
@@ -51,11 +51,11 @@ const Home = () => {
           />
         )}
 
-        {itemsToCarousel && (
+        {/* {itemsToCarousel && (
           <>
             <NewsCarousel items={itemsToCarousel} focusOnSelect={true} />
           </>
-        )}
+        )} */}
       </VStack>
     </Box>
   );
