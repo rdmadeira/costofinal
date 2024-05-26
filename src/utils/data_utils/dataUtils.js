@@ -43,7 +43,7 @@ export const sendItemsToCarrousel = async (itemsToCarrousel) => {
   itemsToCarrousel.forEach((item) => {
     allProductsArray.forEach((prod) => {
       if (prod.CODIGO === item.codigo) {
-        respuesta.push({ ...prod, image: item.image });
+        respuesta.push({ ...prod });
       }
     });
   });

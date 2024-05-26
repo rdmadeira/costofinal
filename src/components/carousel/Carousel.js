@@ -82,7 +82,7 @@ const CustomCarousel = ({ items }) => {
                 <CardHeader /* h={'33%'} */ textAlign="center">
                   <VStack alignContent={'center'}>
                     <Image
-                      src={process.env.PUBLIC_URL + item.image}
+                      src={process.env.PUBLIC_URL + '/assets/cards/' + item.img}
                       h={{ base: '9rem', sm: '4rem' }}
                     />
                     <Text fontSize={{ base: 'lg', sm: 'sm' }}>
@@ -99,7 +99,7 @@ const CustomCarousel = ({ items }) => {
                     <Text zIndex={'50'} pos="relative" fontWeight={'bold'}>
                       Pedido Mínimo:
                       <Text as="span" fontSize={'md'} display="block">
-                        {item.TIPO === 'Rejillas' ? '10' : '20'}
+                        {item.KIT}
                       </Text>
                       unidades
                     </Text>

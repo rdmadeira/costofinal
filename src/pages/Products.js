@@ -44,6 +44,7 @@ const Products = () => {
   const { products } = useGetProducts();
   let { product: productType } = useParams();
   productType = productType.toUpperCase().replace(/-/g, ' ');
+  console.log('productType', 'products', productType, products);
 
   const [productState, setProductState] = useState();
 

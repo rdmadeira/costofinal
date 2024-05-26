@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Box, VStack, Heading, Spinner } from '@chakra-ui/react';
+import {
+  Box,
+  VStack,
+  Heading,
+  Spinner,
+  /*  Card,
+  CardHeader,
+  CardBody,
+  CardFooter, */
+} from '@chakra-ui/react';
 import CustomCarousel from '../components/carousel/Carousel';
+import NewsCarousel from '../components/carousel/NewsCarousel';
 import { sendItemsToCarrousel } from '../utils/data_utils/dataUtils';
 import itemsToCarrousel from '../data/itemsToCarrousel.json';
 
@@ -10,9 +20,9 @@ const Home = () => {
   const [itemsToCarousel, setitemsToCarousel] = useState([]);
 
   useEffect(() => {
-    sendItemsToCarrousel(itemsToCarrousel).then((res) =>
-      setitemsToCarousel(res)
-    );
+    sendItemsToCarrousel(itemsToCarrousel).then((res) => {
+      setitemsToCarousel(res);
+    });
   }, [sendItemsToCarrousel, setitemsToCarousel]);
 
   return (
@@ -39,6 +49,12 @@ const Home = () => {
             color="blue.500"
             size="xl"
           />
+        )}
+
+        {itemsToCarousel && (
+          <>
+            <NewsCarousel items={itemsToCarousel} focusOnSelect={true} />
+          </>
         )}
       </VStack>
     </Box>
