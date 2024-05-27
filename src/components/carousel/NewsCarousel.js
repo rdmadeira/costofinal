@@ -39,7 +39,7 @@ const responsive = {
 };
 
 const NewsCarousel = ({ items }) => {
-  const [isStopped, setisStopped] = useState(false);
+  const [isStopped, setisStopped] = useState(true);
 
   return (
     <Box
@@ -66,10 +66,10 @@ const NewsCarousel = ({ items }) => {
         zIndex={'50'}
         pos="absolute"
         fontWeight={'bold'}
-        top="25px"
+        top="35px"
         width="40px"
         height={'40px'}
-        left={'0'}>
+        right={'-20px'}>
         <Image
           src={process.env.PUBLIC_URL + '/assets/new.png'}
           width="100%"
@@ -87,8 +87,8 @@ const NewsCarousel = ({ items }) => {
           containerClass="news-carousel-container"
           itemClass="carousel-item"
           pauseOnHover={true}
-          customTransition="all 100ms 1000ms"
-          transitionDuration="100"
+          customTransition="all 1500ms 300ms"
+          transitionDuration="50"
           afterChange={() => setTimeout(() => setisStopped(true), 1500)}
           beforeChange={() => setisStopped(false)}>
           {items &&
