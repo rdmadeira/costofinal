@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion, isValidMotionProp } from 'framer-motion';
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import './style.css';
 import {
-  Card,
-  CardBody,
-  CardHeader,
   Box,
-  VStack,
-  Text,
-  Image,
-  Divider,
+  shouldForwardProp,
   Heading,
-  Flex,
+  Image,
+  chakra,
 } from '@chakra-ui/react';
+import { NavLink } from 'react-router-dom';
+
+const ChakraBox = chakra(motion.div, {
+  shouldForwardProp: (prop) =>
+    isValidMotionProp(prop) || shouldForwardProp(prop),
+});
 
 const responsive = {
   superLargeDesktop: {
@@ -37,72 +39,75 @@ const responsive = {
 };
 
 const NewsCarousel = ({ items }) => {
-  console.log('items', items);
+  const [isStopped, setisStopped] = useState(false);
 
   return (
     <Box
       zIndex={'500'}
       position="relative"
-      width={'20%'}
+      width={'min(20%, 165px)'}
       right="0"
-      bottom={'0px'}>
-      <Flex
+      bottom={'0px'}
+      transition="all 0.5s ease"
+      /* background={'white'} */
+      opacity={() => (isStopped ? 1 : 0)}>
+      <Heading color={'#424a9d'} as="h5" size={'1.8vw'}>
+        Articulos de Pesca
+      </Heading>
+      <ChakraBox
+        animate={{ scale: [1, 1.15, 1] }}
+        transition={{
+          duration: 1,
+          ease: 'easeInOut',
+          repeat: Infinity,
+          repeatType: 'loop',
+        }}
+        display={'flex'}
         zIndex={'50'}
         pos="absolute"
         fontWeight={'bold'}
-        top="-10px"
-        width="30%"
-        right={'0'}>
-        <Image src={process.env.PUBLIC_URL + '/assets/new.png   '} />
-      </Flex>
-      <Carousel
-        arrows={false}
-        infinite
-        draggable={true}
-        autoPlay={true}
-        transitionDuration={500}
-        responsive={responsive}
-        containerClass="news-carousel-container"
-        itemClass="carousel-item"
-        pauseOnHover={true}>
-        {items &&
-          items.map((item) => {
-            return (
-              <Box key={item.id} h="100%">
-                <Card
-                  h={'100%'}
-                  size={{ base: 'md', sm: 'sm' }}
-                  align={'center'}
-                  justify="center">
-                  <CardHeader /* h={'33%'} */ textAlign="center">
-                    <VStack alignContent={'center'}>
-                      <Heading size={'md'}>Articulos de Pesca</Heading>
-                      <Image
-                        src={
-                          process.env.PUBLIC_URL + '/assets/cards/' + item.img
-                        }
-                        h={{ base: '9rem', sm: '4rem' }}
-                      />
-                      <Text fontSize={{ base: 'lg', sm: 'sm' }}>
-                        {item.familia}
-                      </Text>
-                    </VStack>
-                  </CardHeader>
-                  <CardBody display={'flex'} alignItems="flex-end">
-                    <VStack spacing={{ base: 6, sm: 3 }}>
-                      <Box>
-                        <Text fontSize={{ base: 'lg', sm: 'sm' }}>
-                          {item['MEDIDA']}
-                        </Text>
-                      </Box>
-                    </VStack>
-                  </CardBody>
-                  <Divider color={'gray.300'} />
-                </Card>
-              </Box>
-            );
-          })}
-      </Carousel>
+        top="25px"
+        width="40px"
+        height={'40px'}
+        left={'0'}>
+        <Image
+          src={process.env.PUBLIC_URL + '/assets/new.png'}
+          width="100%"
+          height={'100%'}
+        />
+      </ChakraBox>
+
+      <NavLink to={'products/art-de-pesca'}>
+        <Carousel
+          arrows={false}
+          infinite
+          autoPlaySpeed={8000}
+          autoPlay={true}
+          responsive={responsive}
+          containerClass="news-carousel-container"
+          itemClass="carousel-item"
+          pauseOnHover={true}
+          customTransition="all 100ms 1000ms"
+          transitionDuration="100"
+          afterChange={() => setTimeout(() => setisStopped(true), 1500)}
+          beforeChange={() => setisStopped(false)}>
+          {items &&
+            items.map((item) => {
+              return (
+                <Box key={item.id} h="100%">
+                  <Image
+                    borderRadius={'60px'}
+                    src={
+                      process.env.PUBLIC_URL +
+                      '/assets/cards/' +
+                      item['unique-img']
+                    }
+                  />
+                </Box>
+              );
+            })}
+        </Carousel>
+      </NavLink>
     </Box>
   );
 };

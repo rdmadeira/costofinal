@@ -1,23 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  VStack,
-  Heading,
-  Spinner,
-  /*  Card,
-  CardHeader,
-  CardBody,
-  CardFooter, */
-} from '@chakra-ui/react';
+import { Box, VStack, Heading, Spinner } from '@chakra-ui/react';
 import CustomCarousel from '../components/carousel/Carousel';
-/* import NewsCarousel from '../components/carousel/NewsCarousel'; */
+import NewsCarousel from '../components/carousel/NewsCarousel';
 import { sendItemsToCarrousel } from '../utils/data_utils/dataUtils';
 import itemsToCarrousel from '../data/itemsToCarrousel.json';
+import useGetProducts from '../hooks/useGetProducts';
 
 /* import homeUrl from '../assets/plumbing-home.jpg'; */
 
 const Home = () => {
   const [itemsToCarousel, setitemsToCarousel] = useState([]);
+  const { products } = useGetProducts();
 
   useEffect(() => {
     sendItemsToCarrousel(itemsToCarrousel).then((res) => {
@@ -51,11 +44,14 @@ const Home = () => {
           />
         )}
 
-        {/* {itemsToCarousel && (
+        {products && (
           <>
-            <NewsCarousel items={itemsToCarousel} focusOnSelect={true} />
+            <NewsCarousel
+              items={products && products['ART DE PESCA']['MULTIFILAMENTOS']}
+              focusOnSelect={true}
+            />
           </>
-        )} */}
+        )}
       </VStack>
     </Box>
   );

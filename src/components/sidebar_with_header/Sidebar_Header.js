@@ -32,10 +32,13 @@ import {
   ModalFooter,
 } from '@chakra-ui/react';
 import { FiMenu, FiChevronDown } from 'react-icons/fi';
-import { TfiLayoutGrid3Alt, TfiLayoutGrid2 } from 'react-icons/tfi';
+
 import { BsCart4 } from 'react-icons/bs';
 import { RiAccountPinCircleFill } from 'react-icons/ri';
 import { ImUserTie } from 'react-icons/im';
+
+import { MdFiberNew, MdConstruction, MdOutlinePlumbing } from 'react-icons/md';
+
 import Logo from '../ui/Logo.jsx';
 import Main from '../../pages/Main';
 import { signOut } from '../../firebase/auth';
@@ -232,18 +235,18 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const [menuItems, setmenuItems] = useState(null);
 
   const icons = [
-    TfiLayoutGrid2,
-    TfiLayoutGrid3Alt,
-    TfiLayoutGrid2,
-    TfiLayoutGrid3Alt,
-    TfiLayoutGrid2,
-    TfiLayoutGrid3Alt,
-    TfiLayoutGrid2,
-    TfiLayoutGrid3Alt,
-    TfiLayoutGrid2,
-    TfiLayoutGrid3Alt,
-    TfiLayoutGrid2,
-    TfiLayoutGrid3Alt,
+    MdOutlinePlumbing,
+    MdConstruction,
+    MdOutlinePlumbing,
+    MdConstruction,
+    MdOutlinePlumbing,
+    MdConstruction,
+    MdOutlinePlumbing,
+    MdConstruction,
+    MdOutlinePlumbing,
+    MdConstruction,
+    MdFiberNew,
+    MdFiberNew,
   ];
   useEffect(() => {
     getMenuNamesData().then((data) => {
