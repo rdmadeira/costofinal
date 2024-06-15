@@ -24,7 +24,7 @@ const Home = () => {
       bgColor={'#f0fff4e0'}
       bgSize="cover"
       bgRepeat="no-repeat"
-      w={{ base: '100vw', md: `calc(100vw - 13rem)` }}
+      w={{ base: '100vw', md: `calc(100vw - 14rem)` }}
       bgBlendMode={'lighten'}
       paddingY={5}
       minH="88vh">

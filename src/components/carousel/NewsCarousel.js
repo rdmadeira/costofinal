@@ -45,13 +45,13 @@ const NewsCarousel = ({ items }) => {
     <Box
       zIndex={'500'}
       position="relative"
-      width={'min(20%, 165px)'}
+      width={{ md: 'min(20%, 165px)', base: '55%' }}
       right="0"
       bottom={'0px'}
       transition="all 0.5s ease"
       /* background={'white'} */
       opacity={() => (isStopped ? 1 : 0)}>
-      <Heading color={'#424a9d'} as="h5" size={'1.8vw'}>
+      <Heading color={'#424a9d'} as="h4" size={{ md: '1.8vw', base: '5vw' }}>
         Articulos de Pesca
       </Heading>
       <ChakraBox
@@ -66,7 +66,6 @@ const NewsCarousel = ({ items }) => {
         zIndex={'50'}
         pos="absolute"
         fontWeight={'bold'}
-        top="35px"
         width="40px"
         height={'40px'}
         right={'-20px'}>
@@ -96,7 +95,6 @@ const NewsCarousel = ({ items }) => {
               return (
                 <Box key={item.id} h="100%">
                   <Image
-                    borderRadius={'60px'}
                     src={
                       process.env.PUBLIC_URL +
                       '/assets/cards/' +
