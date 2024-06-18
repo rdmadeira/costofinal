@@ -128,8 +128,6 @@ const Products = () => {
                     <CardHeader
                       display={'flex'}
                       justifyContent={'center'}
-                      height="100%"
-                      width={'100%'}
                       padding={'1rem'}>
                       <Image
                         width={'76%'}
