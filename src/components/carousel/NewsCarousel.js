@@ -101,20 +101,23 @@ const NewsCarousel = ({ items }) => {
           beforeChange={() => setisStopped(false)} */
         >
           {items &&
-            items.map((item) => {
+            Object.keys(items).map((item) => {
+              {
+                console.log('items[item]', items[item]);
+              }
               return (
                 <Box
-                  key={item.id}
+                  key={items[item].id}
                   w={{
                     base: 'min(100%, 350px)',
                     sm: 'min(100%, 200px)',
-                    md: 'min(30%, 200px)',
+                    md: 'min(30%, 150px)',
                   }}>
                   <Image
                     src={
                       process.env.PUBLIC_URL +
                       '/assets/cards/' +
-                      item['unique-img']
+                      items[item][0]['unique-img']
                     }
                     h="100%"
                   />

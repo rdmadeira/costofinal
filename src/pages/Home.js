@@ -47,7 +47,7 @@ const Home = () => {
         {products && (
           <>
             <NewsCarousel
-              items={products && products['ART DE PESCA']['MULTIFILAMENTOS']}
+              items={products && products['ART DE PESCA']}
               focusOnSelect={true}
             />
           </>
