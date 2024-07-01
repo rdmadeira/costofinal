@@ -1,4 +1,4 @@
-import React /* , { useState } */ from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, isValidMotionProp } from 'framer-motion';
 
 // import Carousel from 'react-multi-carousel';
@@ -19,25 +19,32 @@ const ChakraBox = chakra(motion.div, {
     isValidMotionProp(prop) || shouldForwardProp(prop),
 });
 
-/* const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 1,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 921 },
-    items: 1,
-  },
-  tablet: {
-    breakpoint: { max: 920, min: 520 },
-    items: 1,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-}; */
+const CustomImage = ({ ...props }) => {
+  const [url, setUrl] = useState('');
+
+  useEffect(() => {
+    const fetchImage = async (path) => {
+      const fullPath =
+        /* 'http://127.0.0.1:5001/costofinal-b391b/us-central1/images/api/images'; */
+        'https://us-central1-costofinal-b391b.cloudfunctions.net/images/api/images';
+
+      const fetchResponse = await fetch(fullPath, {
+        method: 'POST',
+        body: path,
+      });
+
+      const fetchData = await fetchResponse.json();
+
+      console.log('fetchData', fetchData);
+
+      return fetchData.url;
+    };
+
+    fetchImage(props.src).then((url) => setUrl(url));
+  }, [setUrl, url]);
+
+  return <Image {...props} src={url} />;
+};
 
 const NewsCarousel = ({ items }) => {
   /* const [isStopped, setisStopped] = useState(true); */
@@ -72,11 +79,7 @@ const NewsCarousel = ({ items }) => {
         height={'40px'}
         right={'-20px'}
         marginBottom="30px">
-        <Image
-          src={process.env.PUBLIC_URL + '/assets/new.png'}
-          width="100%"
-          height={'100%'}
-        />
+        <CustomImage src={'/new.png'} width="100%" height={'100%'} />
       </ChakraBox>
 
       <NavLink to={'products/art-de-pesca'}>
@@ -113,12 +116,8 @@ const NewsCarousel = ({ items }) => {
                     sm: 'min(100%, 200px)',
                     md: 'min(30%, 150px)',
                   }}>
-                  <Image
-                    src={
-                      process.env.PUBLIC_URL +
-                      '/assets/cards/' +
-                      items[item][0]['unique-img']
-                    }
+                  <CustomImage
+                    src={'/cards/' + items[item][0]['unique-img']}
                     h="100%"
                   />
                 </Box>
