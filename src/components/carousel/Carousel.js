@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -42,6 +42,33 @@ const responsive = {
   },
 };
 
+const CustomImage = ({ ...props }) => {
+  const [url, setUrl] = useState('');
+
+  useEffect(() => {
+    const fetchImage = async (path) => {
+      const fullPath =
+        /* 'http://127.0.0.1:5001/costofinal-b391b/us-central1/images/api/images'; */
+        'https://us-central1-costofinal-b391b.cloudfunctions.net/images/api/images';
+
+      const fetchResponse = await fetch(fullPath, {
+        method: 'POST',
+        body: path,
+      });
+
+      const fetchData = await fetchResponse.json();
+
+      console.log('fetchData', fetchData);
+
+      return fetchData.url;
+    };
+
+    fetchImage(props.src).then((url) => setUrl(url));
+  }, [setUrl, url]);
+
+  return <Image {...props} src={url} />;
+};
+
 const CustomCarousel = ({ items }) => {
   const onOpenLogin = useContext(OpenLoginContext);
   const user = useSelector((store) => store.user);
@@ -81,8 +108,8 @@ const CustomCarousel = ({ items }) => {
                 justify="center">
                 <CardHeader /* h={'33%'} */ textAlign="center">
                   <VStack alignContent={'center'}>
-                    <Image
-                      src={process.env.PUBLIC_URL + '/assets/cards/' + item.img}
+                    <CustomImage
+                      src={'/cards/' + item.img}
                       h={{ base: '9rem', sm: '4rem' }}
                     />
                     <Text fontSize={{ base: 'lg', sm: 'sm' }}>

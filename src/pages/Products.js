@@ -37,6 +37,31 @@ import { useParams } from 'react-router-dom';
 import ProductGrid from '../components/product_grid/ProductGrid';
 import { CustomIconButton } from '../components/sidebar_with_header/sideBarComponents';
 
+const CustomImage = ({ ...props }) => {
+  const [url, setUrl] = useState('');
+
+  useEffect(() => {
+    const fetchImage = async (path) => {
+      const fullPath =
+        /* 'http://127.0.0.1:5001/costofinal-b391b/us-central1/images/api/images'; */
+        'https://us-central1-costofinal-b391b.cloudfunctions.net/images/api/images';
+
+      const fetchResponse = await fetch(fullPath, {
+        method: 'POST',
+        body: path,
+      });
+
+      const fetchData = await fetchResponse.json();
+
+      return fetchData.url;
+    };
+
+    fetchImage(props.src).then((url) => setUrl(url));
+  }, [setUrl, url]);
+
+  return <Image {...props} src={url} />;
+};
+
 const Products = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cart = useSelector((store) => store.cart);
@@ -129,13 +154,9 @@ const Products = () => {
                       display={'flex'}
                       justifyContent={'center'}
                       padding={'1rem'}>
-                      <Image
+                      <CustomImage
                         width={'76%'}
-                        src={
-                          process.env.PUBLIC_URL +
-                          '/assets/cards/' +
-                          products[productType][product][0].img
-                        }
+                        src={'/cards/' + products[productType][product][0].img}
                       />
                     </CardHeader>
                     <CardBody display={'flex'} alignItems="end">
