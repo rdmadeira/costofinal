@@ -14,6 +14,7 @@ import {
   Text,
   Image,
   Divider,
+  Spinner,
 } from '@chakra-ui/react';
 import { formatPrices } from '../../utils/product_utils/product_utils';
 import { useContext } from 'react';
@@ -66,7 +67,7 @@ const CustomImage = ({ ...props }) => {
     fetchImage(props.src).then((url) => setUrl(url));
   }, [setUrl, url]);
 
-  return <Image {...props} src={url} />;
+  return url ? <Image {...props} src={url} /> : <Spinner />;
 };
 
 const CustomCarousel = ({ items }) => {
