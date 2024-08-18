@@ -70,8 +70,8 @@ export const getProductsArrayToMenu = async () => {
 
   products.sort(function (a, b) {
     if (
-      (a != 'FERRETERIA' || a != 'ADHESIVOS' || a != 'ART DE PESCA') &&
-      (b == 'FERRETERIA' || b == 'ADHESIVOS' || b == 'ART DE PESCA')
+      (a != 'LIMPIEZA' || a != 'ADHESIVOS' || a != 'ART DE PESCA') &&
+      (b == 'LIMPIEZA' || b == 'ADHESIVOS' || b == 'ART DE PESCA')
     ) {
       return -1;
     } else {
