@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Box, /* VStack, */ Heading, Spinner, Flex } from '@chakra-ui/react';
+import { Box, Heading, Spinner, Flex } from '@chakra-ui/react';
 import CustomCarousel from '../components/carousel/Carousel';
 import NewsCarousel from '../components/carousel/NewsCarousel';
 import Limpieza from '../components/carousel/Limpieza';
 import { sendItemsToCarrousel } from '../utils/data_utils/dataUtils';
 import itemsToCarrousel from '../data/itemsToCarrousel.json';
 import useGetProducts from '../hooks/useGetProducts';
-
-/* import homeUrl from '../assets/plumbing-home.jpg'; */
 
 const Home = () => {
   const [itemsToCarousel, setitemsToCarousel] = useState([]);
