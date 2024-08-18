@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Box, VStack, Heading, Spinner } from '@chakra-ui/react';
+import { Box, /* VStack, */ Heading, Spinner, Flex } from '@chakra-ui/react';
 import CustomCarousel from '../components/carousel/Carousel';
 import NewsCarousel from '../components/carousel/NewsCarousel';
+import Limpieza from '../components/carousel/Limpieza';
 import { sendItemsToCarrousel } from '../utils/data_utils/dataUtils';
 import itemsToCarrousel from '../data/itemsToCarrousel.json';
 import useGetProducts from '../hooks/useGetProducts';
@@ -28,22 +29,23 @@ const Home = () => {
       bgBlendMode={'lighten'}
       paddingY={5}
       minH="88vh">
-      <VStack spacing={'8'}>
-        <Heading alignSelf="center" color={'#424a9d'}>
+      <Flex gap={'50px 30px'} wrap="wrap" justifyContent={'center'}>
+        <Heading color={'#424a9d'} width="100%" textAlign={'center'}>
           Costo Final
         </Heading>
-        {itemsToCarousel.length > 0 ? (
-          <CustomCarousel items={itemsToCarousel} focusOnSelect={true} />
-        ) : (
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-          />
-        )}
-
+        <Flex width={'100%'} justifyContent="center">
+          {itemsToCarousel.length > 0 ? (
+            <CustomCarousel items={itemsToCarousel} focusOnSelect={true} />
+          ) : (
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="blue.500"
+              size="xl"
+            />
+          )}
+        </Flex>
         {products && (
           <>
             <NewsCarousel
@@ -52,7 +54,8 @@ const Home = () => {
             />
           </>
         )}
-      </VStack>
+        <Limpieza />
+      </Flex>
     </Box>
   );
 };
