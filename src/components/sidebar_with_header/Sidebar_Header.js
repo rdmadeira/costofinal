@@ -68,7 +68,9 @@ export default function SidebarWithHeader() {
   const updateProductsFetch = () => {
     setIsFetching(true);
     fetch(
+      /* 'http://127.0.0.1:5001/costofinal-b391b/us-central1/products/api/products/create-products', */
       'https://us-central1-costofinal-b391b.cloudfunctions.net/products/api/products/create-products',
+
       {
         method: 'GET',
         headers: {
@@ -95,6 +97,7 @@ export default function SidebarWithHeader() {
     setIsFetching(true);
 
     fetch(
+      /* 'http://127.0.0.1:5001/costofinal-b391b/us-central1/products/api/products/update-price', */
       'https://us-central1-costofinal-b391b.cloudfunctions.net/products/api/products/update-price',
       {
         method: 'GET',
@@ -125,6 +128,7 @@ export default function SidebarWithHeader() {
     ); */
     fetch(
       'https://us-central1-costofinal-b391b.cloudfunctions.net/products/api/products/products-to-excel',
+      /* 'http://127.0.0.1:5001/costofinal-b391b/us-central1/products/api/products/products-to-excel', */
       {
         method: 'GET',
         headers: {

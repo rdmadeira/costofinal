@@ -30,7 +30,9 @@ const ProductLine = ({ subProd }) => {
     <Tr>
       <Td width="10%">{subProd['CODIGO']}</Td>
       <Td width="45%">{subProd['MEDIDA']}</Td>
-      <Td width="15%">{formatPrices(subProd['PRECIO'])}</Td>
+      <Td width="15%">
+        {subProd['PRECIO'] < 0 ? 'Consultar' : formatPrices(subProd['PRECIO'])}
+      </Td>
       <Td width="20%" whiteSpace={'nowrap'}>
         <Button
           isDisabled={cantidad > KIT ? false : true}
@@ -50,7 +52,10 @@ const ProductLine = ({ subProd }) => {
       <Td width="10%">
         <IconButton
           icon={<BiCartDownload />}
-          onClick={() => addItemToCartHandle(subProd, cantidad)}
+          onClick={() => {
+            subProd['PRECIO'] > 0 && addItemToCartHandle(subProd, cantidad);
+          }}
+          /* disabled={subProd['PRECIO'] < 0 ? true : false} */
         />
       </Td>
     </Tr>
