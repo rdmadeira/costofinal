@@ -13,6 +13,7 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  Spinner,
 } from '@chakra-ui/react';
 
 import {
@@ -59,7 +60,7 @@ const CustomImage = ({ ...props }) => {
     fetchImage(props.src).then((url) => setUrl(url));
   }, [setUrl, url]);
 
-  return <Image {...props} src={url} />;
+  return url ? <Image {...props} src={url} /> : <Spinner />;
 };
 
 const Products = () => {
