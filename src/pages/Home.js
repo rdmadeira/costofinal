@@ -5,11 +5,11 @@ import NewsCarousel from '../components/carousel/NewsCarousel';
 import Limpieza from '../components/carousel/Limpieza';
 import { sendItemsToCarrousel } from '../utils/data_utils/dataUtils';
 import itemsToCarrousel from '../data/itemsToCarrousel.json';
-import useGetProducts from '../hooks/useGetProducts';
+/* import useGetProducts from '../hooks/useGetProducts'; */
 
 const Home = () => {
   const [itemsToCarousel, setitemsToCarousel] = useState([]);
-  const { products } = useGetProducts();
+  /* const { products } = useGetProducts(); */
 
   useEffect(() => {
     sendItemsToCarrousel(itemsToCarrousel).then((res) => {
@@ -27,7 +27,11 @@ const Home = () => {
       bgBlendMode={'lighten'}
       paddingY={5}
       minH="88vh">
-      <Flex gap={'50px 30px'} wrap="wrap" justifyContent={'center'}>
+      <Flex
+        gap={'50px 30px'}
+        wrap="wrap"
+        justifyContent={'center'}
+        paddingBottom="30px">
         <Heading color={'#424a9d'} width="100%" textAlign={'center'}>
           Costo Final
         </Heading>
@@ -44,14 +48,14 @@ const Home = () => {
             />
           )}
         </Flex>
-        {products && (
-          <>
-            <NewsCarousel
-              items={products && products['ART DE PESCA']}
-              focusOnSelect={true}
-            />
-          </>
-        )}
+
+        <>
+          <NewsCarousel
+          /* items={products && products['ART DE PESCA']} */
+          /* focusOnSelect={true} */
+          />
+        </>
+
         <Limpieza />
       </Flex>
     </Box>

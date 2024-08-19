@@ -65,7 +65,7 @@ const CustomCarousel = ({ items }) => {
                   <VStack alignContent={'center'}>
                     <CustomImage
                       src={'/cards/' + item.img}
-                      h={{ base: '9rem', sm: '4rem' }}
+                      h={{ base: '9rem', sm: '6rem' }}
                     />
                     <Text fontSize={{ base: 'lg', sm: 'sm' }}>
                       {item.familia}
