@@ -36,7 +36,7 @@ const NewsCarousel = () => {
         fontWeight={'bold'}
         width="40px"
         height={'40px'}
-        right={'-20px'}
+        /* right={'-20px'} */
         marginBottom="30px">
         <CustomImage src={'/new.png'} width="100%" height={'100%'} />
       </ChakraBox>
