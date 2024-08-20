@@ -50,6 +50,7 @@ const NewsCarousel = () => {
           <CardBody>
             <CustomImage
               src={'/cards/multifilamentos.jpg'}
+              spinner={true}
               /* h={{ base: '9rem', sm: '4rem' }} */
             />
           </CardBody>

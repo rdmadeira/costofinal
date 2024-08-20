@@ -45,6 +45,7 @@ const Limpieza = () => {
           <CardBody>
             <CustomImage
               src={'/cards/limpieza.jpg'}
+              spinner={true}
               /* h={{ base: '9rem', sm: '4rem' }} */
             />
           </CardBody>
