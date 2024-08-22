@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Heading, Spinner, Flex } from '@chakra-ui/react';
+import { /* Box, */ Heading, Spinner, Flex, VStack } from '@chakra-ui/react';
 import CustomCarousel from '../components/carousel/Carousel';
 import NewsCarousel from '../components/carousel/NewsCarousel';
 import Limpieza from '../components/carousel/Limpieza';
@@ -18,23 +18,24 @@ const Home = () => {
   }, [sendItemsToCarrousel, setitemsToCarousel]);
 
   return (
-    <Box
+    <VStack
       bgImage={`url(${process.env.PUBLIC_URL}/assets/plumbing-home.jpg)`}
       bgColor={'#f0fff4e0'}
       bgSize="cover"
       bgRepeat="no-repeat"
       w={{ md: `calc(100vw - 14rem)` }}
       bgBlendMode={'lighten'}
-      paddingY={5}
+      paddingY={'5 0'}
       minH="88vh">
       <Flex
         gap={'50px 30px'}
         wrap="wrap"
         justifyContent={'center'}
         paddingBottom="30px">
-        <Heading color={'#424a9d'} width="100%" textAlign={'center'}>
+        <Heading as={'h1'} color={'#424a9d'} width="100%" textAlign={'center'}>
           Costo Final
         </Heading>
+
         <Flex width={'100%'} justifyContent="center">
           {itemsToCarousel.length > 0 ? (
             <CustomCarousel items={itemsToCarousel} focusOnSelect={true} />
@@ -49,16 +50,16 @@ const Home = () => {
           )}
         </Flex>
 
+        <p style={{ width: '70%' }}>Confira las novedades:</p>
         <>
           <NewsCarousel
           /* items={products && products['ART DE PESCA']} */
           /* focusOnSelect={true} */
           />
         </>
-
         <Limpieza />
       </Flex>
-    </Box>
+    </VStack>
   );
 };
 
