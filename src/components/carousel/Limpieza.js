@@ -1,5 +1,12 @@
 import React from 'react';
-import { Card, CardBody, CardHeader, Box, Text } from '@chakra-ui/react';
+import {
+  Card,
+  CardBody,
+  /* CardHeader, */
+  Box,
+  Text,
+  CardFooter,
+} from '@chakra-ui/react';
 import CustomImage from './CustomImage';
 import ChakraBox from './ChakraBox';
 
@@ -7,16 +14,7 @@ import { NavLink } from 'react-router-dom';
 
 const Limpieza = () => {
   return (
-    <Box
-      zIndex={'500'}
-      position="relative"
-      transition="all 0.5s ease"
-      /* background={'white'} */
-      /* opacity={() => (isStopped ? 1 : 0)} */
-    >
-      {/* <Heading color={'#424a9d'} as="h4" size={{ md: '1.8vw', base: '5vw' }}>
-        Articulos de Pesca
-      </Heading> */}
+    <Box zIndex={'500'} position="relative" transition="all 0.5s ease">
       <ChakraBox
         animate={{ scale: [1, 1.15, 1] }}
         transition={{
@@ -37,18 +35,14 @@ const Limpieza = () => {
       </ChakraBox>
       <NavLink to={'products/limpieza'}>
         <Card size={{ base: 'md', sm: 'sm' }} align={'center'} justify="center">
-          <CardHeader textAlign={'center'}>
+          <CardBody>
+            <CustomImage src={'/cards/limpieza.jpg'} spinner={true} />
+          </CardBody>
+          <CardFooter textAlign={'center'}>
             <Text fontSize={{ base: 'lg', sm: 'sm' }}>
               Artículos de Limpieza
             </Text>
-          </CardHeader>
-          <CardBody>
-            <CustomImage
-              src={'/cards/limpieza.jpg'}
-              spinner={true}
-              /* h={{ base: '9rem', sm: '4rem' }} */
-            />
-          </CardBody>
+          </CardFooter>
         </Card>
       </NavLink>
     </Box>
