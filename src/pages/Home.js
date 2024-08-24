@@ -28,6 +28,7 @@ const Home = () => {
       paddingY={'5 0'}
       minH="88vh">
       <Flex
+        width={'100%'}
         gap={'50px 30px'}
         wrap="wrap"
         justifyContent={'center'}
@@ -50,7 +51,16 @@ const Home = () => {
           )}
         </Flex>
 
-        <p style={{ width: '70%' }}>Confira las novedades:</p>
+        <p
+          style={{
+            width: '100%',
+            padding: '1em 6vw 1em 6vw',
+            backgroundColor: '#424a9d',
+            color: '#ffffff',
+            fontWeight: 'bolder',
+          }}>
+          Confira las novedades:
+        </p>
         <>
           <NewsCarousel
           /* items={products && products['ART DE PESCA']} */
