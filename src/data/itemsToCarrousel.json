@@ -1,42 +1,50 @@
 [
+  { "codigo": "CODOHH12BR" },
+  { "codigo": "M30C" },
+  { "codigo": "E12BR" },
+  { "codigo": "CUPLA1418" },
+  { "codigo": "C30" },
+  { "codigo": "CMG" },
+  { "codigo": "ED12" },
+  { "codigo": "CUPLA12P" },
+  { "codigo": "TSO" },
+  { "codigo": "VES12" },
+  { "codigo": "TSI50" },
+  { "codigo": "E34P" },
+  { "codigo": "CODOH2034F" },
+  { "codigo": "CH2012F " },
+  { "codigo": "TS8X1 " },
+  { "codigo": "TI40 " },
   {
     "id": "5ef7803b-7c8d-4a39-bc58-891904bdeba4",
-    "codigo": "B3412BR",
-    "image": "/assets/caroussel/bronce_agua_buje.jpg"
+    "codigo": "B3412BR"
   },
   {
     "id": "f96a3f30-7a78-4381-b04a-64b63ca8ea46",
-    "codigo": "1418",
-    "image": "/assets/caroussel/bronce_trafilado_buje_reduccion.jpg"
+    "codigo": "1418"
   },
   {
     "id": "188b6740-37b9-4230-b8f4-1fc7802fb92a",
-    "codigo": "HH18",
-    "image": "/assets/caroussel/codos_tees_gas_codos_hh.jpg"
+    "codigo": "HH18"
   },
   {
     "id": "6451940d-eb4c-4ca1-8dc4-fbee1e88e108",
-    "codigo": "CODOE12",
-    "image": "/assets/caroussel/polietileno_espiga_doble.jpg"
+    "codigo": "CODOE12"
   },
   {
     "id": "45962b24-3196-4cca-bfab-15cc9cec8b8b",
-    "codigo": "CODOHH12P",
-    "image": "/assets/caroussel/polipropileno_codo_90_hh.jpg"
+    "codigo": "CODOHH12P"
   },
   {
     "id": "1b9f5fb7-16b6-41e8-aedc-638d347c0072",
-    "codigo": "R20AI",
-    "image": "/assets/caroussel/ryt_rejas_piso.jpg"
+    "codigo": "R20AI"
   },
   {
     "id": "270cfdbb-37a2-46d4-a56a-cc04a1020bfb",
-    "codigo": "TEURO30",
-    "image": "/assets/caroussel/termocuplas_termocupla_sola.jpg"
+    "codigo": "TEURO30"
   },
   {
     "id": "f6da4561-21d6-4474-bcc1-cedc5c338d63",
-    "codigo": "BUJE2520F",
-    "image": "/assets/caroussel/termofusion_buje_reduccion.jpg"
+    "codigo": "BUJE2520F"
   }
 ]

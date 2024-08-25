@@ -42,6 +42,8 @@ const CustomCarousel = ({ items }) => {
     return;
   };
 
+  console.log('items', items);
+
   return (
     <Carousel
       infinite
@@ -67,10 +69,10 @@ const CustomCarousel = ({ items }) => {
                       src={'/cards/' + item.img}
                       h={{ base: '9rem', sm: '6rem' }}
                     />
-                    <Text fontSize={{ base: 'lg', sm: 'sm' }}>
-                      {item.familia}
-                    </Text>
                   </VStack>
+                  <Text fontSize={{ base: 'lg', sm: 'sm' }}>
+                    {item.familia}
+                  </Text>
                   <AlertMessage
                     w="60px"
                     h="60px"

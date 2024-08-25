@@ -101,7 +101,11 @@ const Products = () => {
         </ModalContent>
       </Modal>
       <Box width="100%">
-        <Flex gap={'4'} wrap="wrap" justifyContent={'center'}>
+        <Flex
+          gap={['6', '4', '7']}
+          wrap="wrap"
+          justifyContent={'center'}
+          padding={['4', '3', '1']}>
           {products &&
             Object.keys(products[productType]).map((product) => {
               return (
@@ -113,9 +117,9 @@ const Products = () => {
                       transform: 'scale(1.06)',
                       transition: '0.2s ease-out',
                     }}
-                    width={'30%'}
-                    maxWidth={'2xs'}
-                    minWidth={'150px'}
+                    width={['70%', '40%', '30%']}
+                    maxWidth={'235px'}
+                    minWidth={'190px'}
                     key={products[productType][product][0].id}
                     onClick={() => onOpenModalHandle(product)}>
                     <CardHeader
@@ -129,7 +133,10 @@ const Products = () => {
                       />
                     </CardHeader>
                     <CardBody display={'flex'} alignItems="end">
-                      <Text fontSize={'max(1.0vw, 0.6rem)'}>
+                      <Text
+                        fontSize={
+                          /* 'max(1.0vw, 0.6rem)' */ ['14px', '13px', '13px']
+                        }>
                         {product.toUpperCase()}
                       </Text>
                     </CardBody>

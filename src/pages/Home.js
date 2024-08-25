@@ -62,10 +62,7 @@ const Home = () => {
           Confira las novedades:
         </p>
         <>
-          <NewsCarousel
-          /* items={products && products['ART DE PESCA']} */
-          /* focusOnSelect={true} */
-          />
+          <NewsCarousel />
         </>
         <Limpieza />
       </Flex>
