@@ -13,55 +13,23 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-  Spinner,
 } from '@chakra-ui/react';
 
 import {
   VStack,
   Box,
-  /* 
-  Accordion,
-  AccordionButton,
-  AccordionPanel,
-  AccordionItem,
-  AccordionIcon, */
   Heading,
   Divider,
   Flex,
   Card,
   CardHeader,
-  Image,
   CardBody,
 } from '@chakra-ui/react';
 import useGetProducts from '../hooks/useGetProducts';
 import { useParams } from 'react-router-dom';
 import ProductGrid from '../components/product_grid/ProductGrid';
 import { CustomIconButton } from '../components/sidebar_with_header/sideBarComponents';
-
-const CustomImage = ({ ...props }) => {
-  const [url, setUrl] = useState('');
-
-  useEffect(() => {
-    const fetchImage = async (path) => {
-      const fullPath =
-        /* 'http://127.0.0.1:5001/costofinal-b391b/us-central1/images/api/images'; */
-        'https://us-central1-costofinal-b391b.cloudfunctions.net/images/api/images';
-
-      const fetchResponse = await fetch(fullPath, {
-        method: 'POST',
-        body: path,
-      });
-
-      const fetchData = await fetchResponse.json();
-
-      return fetchData.url;
-    };
-
-    fetchImage(props.src).then((url) => setUrl(url));
-  }, [setUrl, url]);
-
-  return url ? <Image {...props} src={url} /> : <Spinner />;
-};
+import CustomImage from '../components/carousel/CustomImage';
 
 const Products = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -70,7 +38,6 @@ const Products = () => {
   const { products } = useGetProducts();
   let { product: productType } = useParams();
   productType = productType.toUpperCase().replace(/-/g, ' ');
-  console.log('productType', 'products', productType, products);
 
   const [productState, setProductState] = useState();
 
@@ -158,6 +125,7 @@ const Products = () => {
                       <CustomImage
                         width={'76%'}
                         src={'/cards/' + products[productType][product][0].img}
+                        spinner={true}
                       />
                     </CardHeader>
                     <CardBody display={'flex'} alignItems="end">
@@ -171,31 +139,6 @@ const Products = () => {
             })}
         </Flex>
       </Box>
-
-      {/* 
-        <Accordion allowToggle>
-          {products &&
-            Object.keys(products[productType]).map((product) => {
-              return (
-                <AccordionItem key={product}>
-                  <AccordionButton
-                    _expanded={{ bg: 'green.400', color: 'white' }}>
-                    <Box>{product}</Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                  <AccordionPanel>
-                    <VStack>
-                      <ProductGrid
-                        product={products[productType][product]}
-                        productType={productType}
-                      />
-                    </VStack>
-                  </AccordionPanel>
-                </AccordionItem>
-              );
-            })}
-        </Accordion>
-      </Box> */}
     </VStack>
   );
 };

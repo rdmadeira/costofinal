@@ -248,7 +248,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
     MdOutlinePlumbing,
     MdConstruction,
     MdOutlinePlumbing,
-    MdConstruction,
     MdFiberNew,
     MdFiberNew,
   ];

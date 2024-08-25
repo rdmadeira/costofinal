@@ -1,23 +1,18 @@
 import React from 'react';
-
-// import Carousel from 'react-multi-carousel';
-// import 'react-multi-carousel/lib/styles.css';
-import './style.css';
 import {
-  Box,
   Card,
   CardBody,
-  CardFooter,
   /* CardHeader, */
+  Box,
   Text,
+  CardFooter,
 } from '@chakra-ui/react';
-import { NavLink } from 'react-router-dom';
 import CustomImage from './CustomImage';
 import ChakraBox from './ChakraBox';
 
-const NewsCarousel = () => {
-  /* const [isStopped, setisStopped] = useState(true); */
+import { NavLink } from 'react-router-dom';
 
+const Limpieza = () => {
   return (
     <Box zIndex={'500'} position="relative" transition="all 0.5s ease">
       <ChakraBox
@@ -38,18 +33,15 @@ const NewsCarousel = () => {
         marginBottom="30px">
         <CustomImage src={'/new.png'} width="100%" height={'100%'} />
       </ChakraBox>
-
-      <NavLink to={'products/art-de-pesca'}>
+      <NavLink to={'products/limpieza'}>
         <Card size={{ base: 'md', sm: 'sm' }} align={'center'} justify="center">
           <CardBody>
-            <CustomImage
-              src={'/cards/multifilamentos.jpg'}
-              spinner={true}
-              /* h={{ base: '9rem', sm: '4rem' }} */
-            />
+            <CustomImage src={'/cards/limpieza.jpg'} spinner={true} />
           </CardBody>
           <CardFooter textAlign={'center'}>
-            <Text fontSize={{ base: 'lg', sm: 'sm' }}>Artículos de Pesca</Text>
+            <Text fontSize={{ base: 'lg', sm: 'sm' }}>
+              Artículos de Limpieza
+            </Text>
           </CardFooter>
         </Card>
       </NavLink>
@@ -57,4 +49,4 @@ const NewsCarousel = () => {
   );
 };
 
-export default NewsCarousel;
+export default Limpieza;
