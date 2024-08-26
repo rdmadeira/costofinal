@@ -36,15 +36,21 @@ const NewsCarousel = () => {
         height={'40px'}
         /* right={'-20px'} */
         marginBottom="30px">
-        <CustomImage src={'/new.png'} width="100%" height={'100%'} />
+        <CustomImage src={'/new.png'} />
       </ChakraBox>
 
       <NavLink to={'products/art-de-pesca'}>
-        <Card size={{ base: 'md', sm: 'sm' }} align={'center'} justify="center">
+        <Card
+          size={{ base: 'md', sm: 'sm' }}
+          align={'center'}
+          justify="center"
+          width={'2xs'}>
           <CardBody>
             <CustomImage
               src={'/cards/multifilamentos.jpg'}
               spinner={true}
+              /* width={'50%'}
+              height={'50%'} */
               /* h={{ base: '9rem', sm: '4rem' }} */
             />
           </CardBody>
