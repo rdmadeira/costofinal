@@ -34,9 +34,17 @@ const Limpieza = () => {
         <CustomImage src={'/new.png'} width="100%" height={'100%'} />
       </ChakraBox>
       <NavLink to={'products/limpieza'}>
-        <Card size={{ base: 'md', sm: 'sm' }} align={'center'} justify="center">
+        <Card
+          size={{ base: 'md', sm: 'sm' }}
+          align={'center'}
+          justify="center"
+          width={'2xs'}>
           <CardBody>
-            <CustomImage src={'/cards/limpieza.jpg'} spinner={true} />
+            <CustomImage
+              src={'/cards/limpieza.jpg'}
+              spinner={true}
+              /* width={'50%'} */
+            />
           </CardBody>
           <CardFooter textAlign={'center'}>
             <Text fontSize={{ base: 'lg', sm: 'sm' }}>
